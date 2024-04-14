@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
+use App\Repository\SourceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategorieRepository::class)]
-class Categorie
+#[ORM\Entity(repositoryClass: SourceRepository::class)]
+class Source
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,10 +18,14 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(inversedBy: 'sources')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     /**
      * @var Collection<int, Article>
      */
-    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'source')]
     private Collection $articles;
 
     public function __construct()
@@ -46,6 +50,18 @@ class Categorie
         return $this;
     }
 
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Article>
      */
@@ -58,7 +74,7 @@ class Categorie
     {
         if (!$this->articles->contains($article)) {
             $this->articles->add($article);
-            $article->setCategory($this);
+            $article->setSource($this);
         }
 
         return $this;
@@ -68,8 +84,8 @@ class Categorie
     {
         if ($this->articles->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
+            if ($article->getSource() === $this) {
+                $article->setSource(null);
             }
         }
 

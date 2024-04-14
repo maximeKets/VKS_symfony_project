@@ -15,24 +15,38 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $author = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 500)]
+    private ?string $urlToImage = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $author = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $publishedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $category = null;
+    private ?Source $source = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): static
+    {
+        $this->author = $author;
+
+        return $this;
     }
 
     public function getTitle(): ?string
@@ -43,6 +57,18 @@ class Article
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getUrlToImage(): ?string
+    {
+        return $this->urlToImage;
+    }
+
+    public function setUrlToImage(string $urlToImage): static
+    {
+        $this->urlToImage = $urlToImage;
 
         return $this;
     }
@@ -59,18 +85,6 @@ class Article
         return $this;
     }
 
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): static
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
     public function getPublishedAt(): ?\DateTimeInterface
     {
         return $this->publishedAt;
@@ -83,14 +97,14 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?Categorie
+    public function getSource(): ?Source
     {
-        return $this->category;
+        return $this->source;
     }
 
-    public function setCategory(?Categorie $category): static
+    public function setSource(?Source $source): static
     {
-        $this->category = $category;
+        $this->source = $source;
 
         return $this;
     }
