@@ -17,7 +17,6 @@ class ArticleController extends AbstractController
         $this->finder = $finder;
     }
 
-
     #[Route('/', name: 'app_article')]
     public function index(ArticleRepository $articleRepository): Response
     {
