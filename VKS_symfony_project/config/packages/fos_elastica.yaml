@@ -1,0 +1,21 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        articles:
+            properties:
+                title: { type: 'text' }
+                content: { type: 'text' }
+                author: { type: 'keyword' }
+                publishedAt: { type: 'date' }
+            persistence:
+                driver: orm
+                model: App\Entity\Article
+                provider: ~
+                listener:
+                    insert: true
+                    update: true
+                    delete: true
+                    flush: true
+                finder: ~
