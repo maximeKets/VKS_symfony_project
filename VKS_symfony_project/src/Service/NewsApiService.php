@@ -41,6 +41,7 @@ class NewsApiService
         }
     }
 
+
     private function saveArticle(array $articleData)
     {
         $sourceName = $articleData['source']['name'];
