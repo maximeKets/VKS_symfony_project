@@ -28,7 +28,7 @@ class NewsApiService
             'https://newsapi.org/v2/everything',
             [
                 'query' => [
-                    'q' => 'canada',
+                    'q' => 'investissement',
                     'language' => 'fr',
                     'apiKey' => $this->apiKey
                 ]

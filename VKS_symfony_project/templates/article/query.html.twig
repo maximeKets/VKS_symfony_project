@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl mb-12 font-bold text-center ">Recherche avancé</h1>
+    <div class="flex justify-center mb-12">
+        <div id="articles-list" class="grid grid-cols-1  md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  gap-4 ">
+            {% for article in articles %}
+                {% include 'partials/_card-article.html.twig' %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
