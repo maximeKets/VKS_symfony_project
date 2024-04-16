@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recherche{% endblock %}
+{% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1 class="text-3xl mb-12 font-bold text-center ">Recherche avancé</h1>
+    <h1 class="text-3xl mb-12 font-bold text-center ">Articles</h1>
     <div class="flex justify-center mb-12">
         <div id="articles-list" class="grid grid-cols-1  md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  gap-4 ">
-            {% for article in articles %}
+            {% for article in pagination %}
                 {% include 'partials/_card_articles.html.twig' %}
             {% endfor %}
         </div>
     </div>
-
+    <div class="pagination flex justify-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

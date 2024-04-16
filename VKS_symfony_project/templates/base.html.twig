@@ -16,6 +16,9 @@
 <body class="flex flex-col w-full items-center">
 {% include 'partials/header.html.twig' %}
 <main class="w-10/12 ">
+    {% for message in app.flashes('notice') %}
+        {% include 'partials/_message.html.twig' %}
+    {% endfor %}
     {% block body %}
     {% endblock %}
 </main>

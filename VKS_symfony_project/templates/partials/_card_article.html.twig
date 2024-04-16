@@ -1,0 +1,40 @@
+<section class="text-gray-600 body-font">
+    <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            {{ article.title }}
+        </h1>
+        <div class="w-6/12 flex justify-center mb-4 ">
+            <p>
+                {{ article.author }}
+            </p>
+            <p class="mx-2">
+                |
+            <p>
+                {{ article.publishedAt|date("d/m/Y") }}
+            </p>
+        </div>
+
+        <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+             src="{{ article.urltoImage }}">
+
+        <div class="text-center lg:w-2/3 w-full">
+            <p class="mb-8 leading-relaxed">
+                {{ article.content }}
+            </p>
+        </div>
+        <div class="flex lg:w-2/6 md:w-3/6 w-5/6 justify-evenly">
+            <a href="{{ path('app_article_edit', {'article': article.id}) }}">
+
+                <button class=" inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                    Modifier
+                </button>
+            </a>
+            <a href="{{ path('app_article_delete',  {'article': article.id}) }}">
+                <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">
+                    Supprimer
+                </button>
+            </a>
+
+        </div>
+    </div>
+</section>

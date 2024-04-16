@@ -31,7 +31,7 @@ services:
       $apiKey: '%env(NEWS_API_KEY)%'
 
 
-  App\Controller\ArticleController:
+  App\Controller\ElasticSearchController:
     tags: ['controller.service_arguments']
     public: true
     arguments:
